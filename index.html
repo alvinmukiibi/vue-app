@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>Vue App</title>
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <br/>
+        <div class="container">
+            <input type="text" id="name" class="form-control" v-model="message">
+            <p>The input element has a value of {{ message }}</p>
+            <p v-if="hours < 12">Good Morning</p>
+            <p v-if="hours > 12 && hours < 13">Good Afternoon</p>
+            <p v-if="hours > 13">Good Evening</p>
+            <p v-else>{{ dogs[1] }}</p>
+           
+            <p v-show="true" >Printed</p>
+            <p v-show="false" >not printed</p>
+
+            <ul>
+                <li v-for="dog in dogs" >{{ dog }}</li>
+            </ul>
+            <!-- the value first then the key -->
+            <ul>
+                <li v-for="(rent, city) in averageRent" >Rent in {{ city }} is {{ rent }} dollars</li>
+            </ul>
+            <!-- You can use the shorthand : or the v-bind -->
+            <button v-bind:class="classValue" :disabled="isDisabled"   >Send</button>
+            <br/>
+            <!-- Reactivity -->
+            You have spent  <span class="text-danger">{{ seconds }}</span> on this page
+
+            <!-- Two way data binding using the v-model  (not the v-bind which only updates unidirectionally) -->
+            <!-- <input type="text" class="form-control" v-bind:value="inputText"> -->
+            <input type="text" class="form-control" v-model="inputText">
+            <p class="text-primary">Input Text: {{ inputText }}</p>
+
+            <!-- Radio buttons -->
+           <label for="one"><input type="radio" v-model="value" value="one"></label><br/>
+           <label for="two"><input type="radio" v-model="value" value="two"></label><br/>
+           <label for="three"><input type="radio" v-model="value" value="three"></label><br/>
+
+           <p>The check box selected is {{ value }}</p>
+
+           <!-- Displaying html -->
+           <div v-html="myHtml" ></div>
+
+           <!-- The methods of Vue -->
+           <ul>
+               <li v-for="number in filterPositive(numbers)" v-text="number" ></li>
+           </ul>
+           <!-- The cumputed properties of Vue -->
+           <p>The sum of the positive numbers is {{ numberTotal }}</p>
+
+           <!-- Event listeners in Vue -->
+           <input type="text" class="form-control" v-model="newDog">
+           <!-- <button class="btn btn-danger" v-on:click="addDog" >Add dog</button> -->
+           <button class="btn btn-danger" @click="addDog" >Add dog</button>
+           
+
+           <!-- Event modifiers -->
+           <a @click.prevent href="http://mukiibi">Click to run</a>
+           <a @click.stop="run" href="http://mukiibi">Click to run</a>
+           <!-- the action to be done only on the first time it is clicked -->
+           <button @click.once></button>
+           <!-- Using Vue filters to prevent duplication -->
+
+           <p class="text-success">productOneCost is  {{ productOneCost | formatCost('$') }} </p>
+           <p class="text-success">productTwoCost is  {{ productTwoCost | formatCost('$') }} </p>
+           <p class="text-success">productThreeCost is  {{ productThreeCost | formatCost('$') }} </p>
+           
+           <!-- Accessing elements directly using ref -->
+
+           <input ref="myParagraph" type="text" value="Alvin" />
+
+           <!-- {{ $refs.myParagraph }} -->
+
+           <!-- Custome directives -->
+
+           <p v-blink>Great day</p>
+
+           <!-- Attribute and class name binding -->
+
+           <button :class="{ 'btn btn-success': isSuccess }" @click="toggleClass">Click Me</button>
+
+           <br/>
+           <h3 class="text-primary">All Tasks</h3>
+           <ul>
+               <li v-for="task in tasks" v-if="task.completed" v-text="task.description"  ></li>
+               <input type="checkbox" name="task">
+           </ul>
+           <h3 class="text-primary">Uncompleted Tasks</h3>
+           <ul>
+               <li v-for="task in uncompletedTasks" v-text="task.description"></li>
+           </ul>
+
+           <!-- Dynamic attribute binding -->
+
+           <a v-bind:[attributeName]="attributeValue">Dynamic attributes</a>
+
+        </div>
+        <script src="./vuejs/vue.js"></script>
+        <script src="./src/index.js" type=""></script>    
+    </body>
+</html>
