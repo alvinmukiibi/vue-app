@@ -7,7 +7,64 @@ Vue.directive('blink', {
     }, 1000);
     }
     });
-
+Vue.component('task', {
+    template: '<li><slot></slot></li>',
+});
+Vue.component('task-list', {
+    // We use a div below because a component netted in another must have a single root element
+    template: '<div><task v-for="task in mytasks" v-text="task.description"></task></div>',
+    data(){
+        return{
+            mytasks: [
+                {id: 1,description: 'Catch fish', completed: false},
+                {id: 2,description: 'Take daughter to school', completed: true},
+                {id: 3,description: 'Go see grandma', completed: true},
+                {id: 4,description: 'Call Jackie', completed: false},
+                {id: 5,description: 'Kill some goats', completed: true},
+                {id: 6,description: 'Watch WWE', completed: false},
+                {id: 7,description: 'Listen to country music', completed: true}, 
+            ]
+           
+        }
+    }
+})
+Vue.component('positive-numbers', {
+    template: '<p :style="mystyle">{{ positiveNumbers.length }} positive numbers and the count is <span>{{ count }} and the price is {{ priceOfFuel }} {{ unit }}</span></p>',
+    // The data property here is a function that must return an object
+    data() {
+        return{
+            numbers: [-5, 0, 2, -1, 1, 0.5]
+        }
+        
+    },
+    // props: ['color'],
+    props: {
+        color: String,
+        // count: Number
+        count: [Number, String],
+        // specifying if a prop is required
+        priceOfFuel: {
+            type: [Number, String],
+            required: true
+        },
+        unit: {
+            type: String,
+            default: '$'
+        }
+    },
+    computed: {
+        positiveNumbers(){
+            return this.numbers.filter(number => number >= 0);
+        },
+        mystyle(){
+            return {color: this.color};
+        }
+    }
+});
+const CustomButton = {
+    template: '<button class="btn btn-secondary">BUTTON COMPONENT</button>',
+    
+}
 
 $options =  {
     el: '.container',
@@ -109,6 +166,9 @@ $options =  {
     },
     destroyed(){
 
+    },
+    components: {
+        CustomButton
     }
 
 };

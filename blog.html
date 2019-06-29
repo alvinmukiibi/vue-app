@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog</title>
+    <link rel="stylesheet" href="
+    https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+</head>
+<body style="padding-top: 50px">
+
+    <div class="container">
+           <message title="Yooo" body="This is a new greeting"></message>
+           <!-- <message title="Watsp" body="This is a new greeting"></message>
+           <message title="Oli biki" body="This is a new greeting"></message>
+            -->
+            <!-- How a component can notify another component about an action that has taken place -->
+
+            <coupon @applied="onCouponApplied"></coupon>
+
+            <h3 v-if="couponApplied"> You used a coupon {{ inputValue}}</h3>
+
+    </div>
+   
+    <script src="./vuejs/vue.js"></script>
+    <script src="src/blog.js"></script>
+</body>
+</html>

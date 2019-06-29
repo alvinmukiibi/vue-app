@@ -95,7 +95,25 @@
 
            <!-- Dynamic attribute binding -->
 
-           <a v-bind:[attributeName]="attributeValue">Dynamic attributes</a>
+           <!-- <a v-bind:[attributeName]="attributeValue">Dynamic attributes</a> -->
+
+           <!-- Components -->
+           <br/><br/>
+
+           <custom-button></custom-button> <br/>
+           <!-- Passing props into components -->
+           <positive-numbers price-of-fuel=7800 count="89" color="blue"></positive-numbers>
+
+           <!-- using slots for props -->
+
+           <h3>Task list</h3>
+
+           <task-list></task-list>
+
+           <!-- <task>Got work</task>
+           <task>Got school</task>
+           <task>Got clib</task> -->
+          
 
         </div>
         <script src="./vuejs/vue.js"></script>
